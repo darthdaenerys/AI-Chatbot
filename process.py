@@ -56,3 +56,18 @@ def preprocess(df):
     df['decoder target tokens']=df['decoder_targets'].apply(lambda x:len(x.split()))
     show_encdec_tokens(df)
     df.drop(columns=['question','answer','encoder input tokens','decoder input tokens','decoder target tokens'],axis=1,inplace=True)
+
+    vectorize_layer=TextVectorization(
+        max_tokens=vocab_size,
+        standardize=None,
+        output_mode='int',
+        output_sequence_length=max_sequence_length
+    )
+    vectorize_layer.adapt(df['encoder_inputs']+' '+df['decoder_targets']+' <sos> <eos>',batch_size=512)
+
+    x=sequences2ids(df['encoder_inputs'],vectorize_layer)
+    yd=sequences2ids(df['decoder_inputs'],vectorize_layer)
+    y=sequences2ids(df['decoder_targets'],vectorize_layer)
+
+    data=tf.data.Dataset.from_tensor_slices((x,yd,y))
+    data=data.shuffle(buffer_size)
