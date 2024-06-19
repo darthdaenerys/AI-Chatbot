@@ -5,3 +5,9 @@ const { spawn } = require('child_process');
 const app = express()
 const http=require('http');
 const server=http.createServer(app)
+const io = socketIO(server,{
+    cors: {
+        origin: "*",
+        methods: ["GET", "POST"]
+    }
+});
