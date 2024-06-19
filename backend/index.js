@@ -11,3 +11,4 @@ const io = socketIO(server,{
         methods: ["GET", "POST"]
     }
 });
+const port = 5000
