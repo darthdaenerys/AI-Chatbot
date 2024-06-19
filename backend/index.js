@@ -12,3 +12,6 @@ const io = socketIO(server,{
     }
 });
 const port = 5000
+
+
+app.use(cors());
