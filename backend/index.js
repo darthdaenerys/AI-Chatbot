@@ -38,3 +38,7 @@ const onData=(chunk)=>{
     // console.log('Sending chunk:', generatedText);
     io.emit('generatedText', generatedText);
 }
+
+const onError=(data)=>{
+    res.status(500).json(data);
+}
