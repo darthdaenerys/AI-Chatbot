@@ -34,5 +34,7 @@ app.get('/', (req, res) => {
 const pythonProcess = spawn('python', ['../chat.py']);
 
 const onData=(chunk)=>{
+    const generatedText=chunk.toString();
+    // console.log('Sending chunk:', generatedText);
     io.emit('generatedText', generatedText);
 }
