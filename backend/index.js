@@ -40,5 +40,11 @@ const onData=(chunk)=>{
 }
 
 const onError=(data)=>{
+    console.error(`Error from Python script: ${data}`);
     res.status(500).json(data);
+}
+
+const onClose=(code)=>{
+    io.emit('stop');
+    res.status(200);
 }
