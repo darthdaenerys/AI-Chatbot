@@ -50,3 +50,4 @@ const onClose=(code)=>{
 }
 
 pythonProcess.stdout.on('data', onData);
+pythonProcess.stderr.on('data', onError);
