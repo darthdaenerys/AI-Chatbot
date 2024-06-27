@@ -48,3 +48,5 @@ const onClose=(code)=>{
     io.emit('stop');
     res.status(200);
 }
+
+pythonProcess.stdout.on('data', onData);
