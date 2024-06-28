@@ -52,3 +52,12 @@ const onClose=(code)=>{
 pythonProcess.stdout.on('data', onData);
 pythonProcess.stderr.on('data', onError);
 pythonProcess.on('close', onClose);
+
+app.post('/message', (req, res) => {
+    try{
+        const chunk = req.body;
+        pythonProcess.stdin.write(chunk.message+'\n');
+        res.status(200).json("Success");
+
+    }
+});
