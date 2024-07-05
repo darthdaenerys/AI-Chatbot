@@ -65,3 +65,7 @@ app.post('/message', (req, res) => {
         res.status(500)
     }
 });
+
+server.listen(port, () => {
+	console.log(`Example app listening on port ${port}`)
+})
