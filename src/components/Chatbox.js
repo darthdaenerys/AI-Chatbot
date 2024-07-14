@@ -13,5 +13,12 @@ export default function Chatbox() {
 	}
 	
 
+	const updateChatElement = (word) => {
+		let cursor=document.querySelector('#cursor');
+		cursor.insertAdjacentHTML('beforebegin',word)
+		let chatsElement=document.querySelector('.chats');
+		chatsElement.scrollTop=chatsElement.scrollHeight;
+	}
+
 	
 }
