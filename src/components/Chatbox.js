@@ -28,5 +28,36 @@ export default function Chatbox() {
 	}
 
 
+	useEffect(() => {
+		const socket = io('http://localhost:5000');
+		socket.on('connect', () => {
+			console.log('Connected to server');
+		})
+		socket.on('disconnect', () => {
+			console.log('Disconnected from server');
+		})
+		socket.on('generatedText', (recievedChunk) => {
+			if(recievedChunk.trim()==='<sos>'){
+				createNewChatElement();
+			}
+			else if(recievedChunk.trim()==='<eos>'){
+				const button=document.querySelector('.btn');
+				button.disabled=false;
+				let cursor = document.querySelector('#cursor');
+				cursor.remove();
+			}
+			else{
+				updateChatElement(recievedChunk);
+			}
+			// console.log('Recieved chunk: ',recievedChunk);
+		})
+		socket.on('stop', () => {
+			console.log('Python process stopped!');
+		})
+		return () => {
+			socket.disconnect();
+		};
+	}, [])
+
 	
 }
