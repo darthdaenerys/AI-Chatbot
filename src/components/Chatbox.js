@@ -20,5 +20,8 @@ export default function Chatbox() {
 		chatsElement.scrollTop=chatsElement.scrollHeight;
 	}
 
-	
+	const addUserChatElement=(text)=>{
+		let chatsElement=document.querySelector('.chats');
+		let rawhtml = `<div class="message-wrapper"><div class="message right"><p>${text}</p></div></div>`;
+	}
 }
