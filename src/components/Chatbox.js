@@ -64,4 +64,9 @@ export default function Chatbox() {
 	useEffect(()=>{
 		inputRef.current.focus();
 	},[])
+
+
+	const handleOnChange = (event) => {
+		setInput(event.target.value);
+	}
 }
