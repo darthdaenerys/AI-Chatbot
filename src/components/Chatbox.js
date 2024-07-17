@@ -61,4 +61,7 @@ export default function Chatbox() {
 
 	const inputRef=useRef(null);
 
+	useEffect(()=>{
+		inputRef.current.focus();
+	},[])
 }
