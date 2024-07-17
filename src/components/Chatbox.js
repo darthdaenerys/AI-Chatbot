@@ -59,5 +59,6 @@ export default function Chatbox() {
 		};
 	}, [])
 
-	
+	const inputRef=useRef(null);
+
 }
