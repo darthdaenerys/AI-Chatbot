@@ -77,5 +77,11 @@ export default function Chatbox() {
 		}
 	}
 
+	const handleSubmit = async () => {
+		const button=document.querySelector('.btn');
+		if(button.disabled) return;
+		button.disabled=true;
+		
+	}
 	
 }
