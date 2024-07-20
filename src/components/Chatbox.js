@@ -69,4 +69,13 @@ export default function Chatbox() {
 	const handleOnChange = (event) => {
 		setInput(event.target.value);
 	}
+
+	const handleKeyDown=(event)=>{
+		if(event.key==='Enter'){
+			event.preventDefault();
+			handleSubmit();
+		}
+	}
+
+	
 }
