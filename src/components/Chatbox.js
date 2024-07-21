@@ -96,5 +96,14 @@ export default function Chatbox() {
 			console.log('There was an error: ', error);
 		}
 	}
-	
+	return (
+		<>
+			<section id="chat-section">
+				<div className="chat-container">
+					<div className="chats">
+					</div>
+				</div>
+			</section>
+		</>
+	)
 }
