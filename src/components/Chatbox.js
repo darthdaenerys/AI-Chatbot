@@ -102,6 +102,11 @@ export default function Chatbox() {
 				<div className="chat-container">
 					<div className="chats">
 					</div>
+
+					<div className="type-message">
+						<form id="form" onSubmit={handleSubmit}>
+						</form>
+					</div>
 				</div>
 			</section>
 		</>
