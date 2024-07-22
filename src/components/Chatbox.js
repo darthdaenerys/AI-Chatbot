@@ -106,6 +106,9 @@ export default function Chatbox() {
 					<div className="type-message">
 						<form id="form" onSubmit={handleSubmit}>
 							<input type="text" name="message" value={input} onChange={handleOnChange} id="msg-input" placeholder="Type your message" onKeyDown={handleKeyDown} ref={inputRef}/>
+							<button className="btn" type="submit">
+								<i className="fa-solid fa-paper-plane"></i>
+							</button>
 						</form>
 					</div>
 				</div>
