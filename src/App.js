@@ -7,6 +7,7 @@ function App() {
 	return (
 		<>
 			<Navbar title="AI Chat Application" />
+			<Chatbox />
 		</>
 	);
 }
