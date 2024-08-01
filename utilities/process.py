@@ -74,3 +74,7 @@ def preprocess(df):
         output_sequence_length=max_sequence_length
     )
     vectorize_layer.adapt(df['encoder_inputs']+' '+df['decoder_targets']+' <sos> <eos>',batch_size=512)
+
+    x=sequences2ids(df['encoder_inputs'],vectorize_layer)
+    yd=sequences2ids(df['decoder_inputs'],vectorize_layer)
+    y=sequences2ids(df['decoder_targets'],vectorize_layer)
