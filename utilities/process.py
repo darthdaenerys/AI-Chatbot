@@ -78,3 +78,13 @@ def preprocess(df):
     x=sequences2ids(df['encoder_inputs'],vectorize_layer)
     yd=sequences2ids(df['decoder_inputs'],vectorize_layer)
     y=sequences2ids(df['decoder_targets'],vectorize_layer)
+
+    data=tf.data.Dataset.from_tensor_slices((x,yd,y))
+    data=data.shuffle(buffer_size)
+
+    train_data=data.take(int(.9*len(data)))
+    train_data=train_data.cache()
+    train_data=train_data.shuffle(buffer_size)
+    train_data=train_data.batch(batch_size)
+    train_data=train_data.prefetch(tf.data.AUTOTUNE)
+    train_data_iterator=train_data.as_numpy_iterator()
