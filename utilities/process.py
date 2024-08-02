@@ -88,3 +88,10 @@ def preprocess(df):
     train_data=train_data.batch(batch_size)
     train_data=train_data.prefetch(tf.data.AUTOTUNE)
     train_data_iterator=train_data.as_numpy_iterator()
+
+    val_data=data.skip(int(.9*len(data))).take(int(.1*len(data)))
+    val_data=val_data.batch(batch_size)
+    val_data=val_data.prefetch(tf.data.AUTOTUNE)
+
+    _=train_data_iterator.next()
+    return train_data,val_data,train_data_iterator
