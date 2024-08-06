@@ -31,3 +31,5 @@ def get_vocabulary():
         output_mode='int',
         output_sequence_length=max_sequence_length
     )
+    vectorize_layer.adapt(df['encoder_inputs']+' '+df['decoder_targets']+' <sos> <eos>',batch_size=512)
+    return vectorize_layer
