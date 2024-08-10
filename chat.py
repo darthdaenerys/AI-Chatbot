@@ -15,3 +15,13 @@ decoder=Decoder(lstm_cells,embedding_dim,vocab_size)
 chatbot=ChatBot(encoder,decoder)
 chatbot.load_weights('../weights/weight')
 text=''
+
+print("<sos>",end=' ',flush=True)
+time.sleep(.5)
+print("Hello, I'm an AI chatbot! ",end='',flush=True)
+time.sleep(.5)
+print("<eos> ",end='',flush=True)
+
+while True:
+    text=input()
+    chatbot.prompt(text)
