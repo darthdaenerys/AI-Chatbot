@@ -12,3 +12,13 @@ class ChatBot(tf.keras.models.Model):
         self.encoder,self.decoder=self.build_inference_model(base_encoder,base_decoder)
         self.first_word=True
         self.eos_recieved=False
+
+    def build_inference_model(self,base_encoder,base_decoder):
+        encoder_inputs=tf.keras.Input(shape=(None,))
+        x=base_encoder.layers[0](encoder_inputs)
+        x=base_encoder.layers[1](x)
+        encoder_outputs,encoder_state_h,encoder_state_c=base_encoder.layers[2](x)
+        encoder=tf.keras.models.Model(
+            inputs=encoder_inputs,
+            outputs=(encoder_outputs,encoder_state_h,encoder_state_c),name='chatbot_encoder'
+        )
