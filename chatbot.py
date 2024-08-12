@@ -39,3 +39,7 @@ class ChatBot(tf.keras.models.Model):
             outputs=[decoder_outputs,decoder_state_h,decoder_state_c],name='chatbot_decoder'
         )
         return encoder,decoder
+
+    def summary(self):
+        print(self.encoder.summary())
+        print(self.decoder.summary())
