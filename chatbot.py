@@ -22,3 +22,10 @@ class ChatBot(tf.keras.models.Model):
             inputs=encoder_inputs,
             outputs=(encoder_outputs,encoder_state_h,encoder_state_c),name='chatbot_encoder'
         )
+
+        decoder_inputs=tf.keras.Input(shape=(1,),name='decoder_inputs')
+        all_encoder_inputs=tf.keras.Input(shape=(None,lstm_cells),name='all_encoder_inputs')
+        decoder_input_state_h=tf.keras.Input(shape=(lstm_cells,),name='decoder_state_h_input')
+        decoder_input_state_c=tf.keras.Input(shape=(lstm_cells,),name='decoder_state_c_input')
+        x=base_decoder.layers[0](decoder_inputs)
+        x=base_decoder.layers[2](x)
