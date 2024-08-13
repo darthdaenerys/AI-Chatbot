@@ -53,3 +53,10 @@ class ChatBot(tf.keras.models.Model):
         reweighted_conditional_probability = self.softmax(conditional_probability)
         probas = np.random.multinomial(1, reweighted_conditional_probability, 1)
         return np.argmax(probas)
+
+    def preprocess(self,text):
+        text=clean_text(text)
+        seq=np.zeros((1,max_sequence_length),dtype=np.int32)
+        for i,word in enumerate(text.split()):
+            seq[:,i]=sequences2ids(word,self.vectorize_layer).numpy()[0]
+        return seq
