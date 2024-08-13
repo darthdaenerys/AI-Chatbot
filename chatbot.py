@@ -43,3 +43,6 @@ class ChatBot(tf.keras.models.Model):
     def summary(self):
         print(self.encoder.summary())
         print(self.decoder.summary())
+
+    def softmax(self,z):
+        return np.exp(z)/sum(np.exp(z))
