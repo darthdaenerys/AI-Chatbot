@@ -46,3 +46,10 @@ class ChatBot(tf.keras.models.Model):
 
     def softmax(self,z):
         return np.exp(z)/sum(np.exp(z))
+
+    def sample(self,conditional_probability,temperature=0.8):
+        conditional_probability = np.asarray(conditional_probability).astype("float64")
+        conditional_probability = np.log(conditional_probability) / temperature
+        reweighted_conditional_probability = self.softmax(conditional_probability)
+        probas = np.random.multinomial(1, reweighted_conditional_probability, 1)
+        return np.argmax(probas)
