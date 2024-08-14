@@ -60,3 +60,11 @@ class ChatBot(tf.keras.models.Model):
         for i,word in enumerate(text.split()):
             seq[:,i]=sequences2ids(word,self.vectorize_layer).numpy()[0]
         return seq
+    
+    def call(self,text,config=None):
+        input_seq=self.preprocess(text)
+        encoder_outputs,state_h,state_c=self.encoder(input_seq,training=False)
+        target_seq=np.zeros((1,1))
+        target_seq[:,:]=sequences2ids(['<sos>'],self.vectorize_layer).numpy()[0][0]
+        stop_condition=False
+        decoded=[]
