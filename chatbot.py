@@ -68,3 +68,33 @@ class ChatBot(tf.keras.models.Model):
         target_seq[:,:]=sequences2ids(['<sos>'],self.vectorize_layer).numpy()[0][0]
         stop_condition=False
         decoded=[]
+        
+        print('<sos>',end='',flush=True)
+        time.sleep(.3)
+        
+        while not stop_condition:
+            
+            decoder_outputs,state_h,state_c=self.decoder([target_seq,encoder_outputs,state_h,state_c],training=False)
+            # index=tf.argmax(decoder_outputs[:,-1,:],axis=-1).numpy().item()
+            index=self.sample(decoder_outputs[0,0,:]).item()
+            word=ids2sequences([index],self.vectorize_layer)
+            word=word.strip()
+            
+            if word=='<eos>' or len(decoded)>=max_sequence_length:
+                time.sleep(.3)
+                print('<eos>',end='',flush=True)
+                self.eos_recieved=True
+                stop_condition=True
+                
+            else:
+                if word in [".,!?/&$:;*"]:
+                    print(word,end='',flush=True)
+                else:
+                    if self.first_word:
+                        word=word[0].upper()+word[1:]
+                        self.first_word=False
+                    print(' '+word,end='',flush=True)
+                    
+                decoded.append(index)
+                target_seq=np.zeros((1,1))
+                target_seq[:,:]=index
