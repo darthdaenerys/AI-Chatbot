@@ -98,3 +98,13 @@ class ChatBot(tf.keras.models.Model):
                 decoded.append(index)
                 target_seq=np.zeros((1,1))
                 target_seq[:,:]=index
+    
+    def prompt(self,text):
+        self.first_word=True
+        self(text)
+        
+        if not self.eos_recieved:
+            time.sleep(.3)
+            print('<eos>',end='',flush=True)
+            
+
