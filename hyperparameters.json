@@ -1,0 +1,9 @@
+{
+    "vocab_size":30946,
+    "max_sequence_length":25,
+    "learning_rate":0.003,
+    "batch_size":32,
+    "lstm_cells":512,
+    "embedding_dim":64,
+    "buffer_size":10000
+}
