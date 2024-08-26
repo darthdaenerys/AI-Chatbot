@@ -14,3 +14,12 @@ class Encoder(tf.keras.models.Model):
             mask_zero=True,
             embeddings_initializer=tf.keras.initializers.GlorotNormal()
         )
+        self.normalize=LayerNormalization()
+        self.lstm=LSTM(
+            units,
+            dropout=.3,
+            return_state=True,
+            return_sequences=True,
+            name='encoder_lstm',
+            kernel_initializer=tf.keras.initializers.HeNormal()
+        )
