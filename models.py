@@ -23,3 +23,12 @@ class Encoder(tf.keras.models.Model):
             name='encoder_lstm',
             kernel_initializer=tf.keras.initializers.HeNormal()
         )
+    
+    def call(self,encoder_inputs):
+        self.inputs=encoder_inputs
+        x=self.embedding(encoder_inputs)
+        x=self.normalize(x)
+        x=Dropout(.3)(x)
+        encoder_outputs,encoder_state_h,encoder_state_c=self.lstm(x)
+        self.outputs=[encoder_outputs,encoder_state_h,encoder_state_c]
+        return encoder_outputs,encoder_state_h,encoder_state_c
