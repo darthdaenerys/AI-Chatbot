@@ -32,3 +32,10 @@ class Encoder(tf.keras.models.Model):
         encoder_outputs,encoder_state_h,encoder_state_c=self.lstm(x)
         self.outputs=[encoder_outputs,encoder_state_h,encoder_state_c]
         return encoder_outputs,encoder_state_h,encoder_state_c
+
+class BahdanauAttention(tf.keras.layers.Layer):
+    def __init__(self, units):
+        super(BahdanauAttention, self).__init__()
+        self.W1 = tf.keras.layers.Dense(units)
+        self.W2 = tf.keras.layers.Dense(units)
+        self.V = tf.keras.layers.Dense(1)
