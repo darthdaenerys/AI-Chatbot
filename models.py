@@ -51,3 +51,9 @@ class BahdanauAttention(tf.keras.layers.Layer):
         # the shape of the tensor before applying self.V is (batch_size, max_length, units)
         score = self.V(tf.nn.tanh(
             self.W1(query_with_time_axis) + self.W2(values)))
+        # attention_weights shape == (batch_size, max_length, 1)
+        attention_weights = tf.nn.softmax(score, axis=1)
+        # context_vector shape after sum == (batch_size, hidden_size)
+        context_vector = attention_weights * values
+        context_vector = tf.reduce_sum(context_vector, axis=1)
+        return context_vector, attention_weights
