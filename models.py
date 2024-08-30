@@ -71,3 +71,19 @@ class Decoder(tf.keras.models.Model):
             mask_zero=True,
             embeddings_initializer=tf.keras.initializers.HeNormal()
         )
+        self.attention=BahdanauAttention(units)
+        self.normalize=LayerNormalization()
+        self.lstm=LSTM(
+            units,
+            dropout=.3,
+            return_state=True,
+            return_sequences=True,
+            name='decoder_lstm',
+            kernel_initializer=tf.keras.initializers.HeNormal()
+        )
+        self.fc=Dense(
+            vocab_size,
+            activation='softmax',
+            name='decoder_dense',
+            kernel_initializer=tf.keras.initializers.HeNormal()
+        )
