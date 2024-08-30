@@ -57,3 +57,17 @@ class BahdanauAttention(tf.keras.layers.Layer):
         context_vector = attention_weights * values
         context_vector = tf.reduce_sum(context_vector, axis=1)
         return context_vector, attention_weights
+
+class Decoder(tf.keras.models.Model):
+    def __init__(self,units,embedding_dim,vocab_size,*args,**kwargs) -> None:
+        super().__init__(*args,**kwargs)
+        self.units=units
+        self.embedding_dim=embedding_dim
+        self.vocab_size=vocab_size
+        self.embedding=Embedding(
+            vocab_size,
+            embedding_dim,
+            name='decoder_embedding',
+            mask_zero=True,
+            embeddings_initializer=tf.keras.initializers.HeNormal()
+        )
