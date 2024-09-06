@@ -20,3 +20,13 @@ class ChatBotTrainer(tf.keras.models.Model):
         n_correct = tf.keras.backend.sum(mask*correct)
         n_total = tf.keras.backend.sum(mask)
         return n_correct,n_total
+
+    def __call__(self,inputs):
+        encoder_inputs,decoder_inputs=inputs
+        encoder_outputs,decoder_state_h,decoder_state_c=self.encoder(encoder_inputs)
+        all_outputs=[]
+        for t in range(decoder_inputs.shape[-1]):
+            decoder_outputs,decoder_state_h,decoder_state_c=self.decoder(decoder_inputs[:,t:t+1],encoder_outputs,decoder_state_h,decoder_state_c)
+            all_outputs.append(decoder_outputs)
+        decoder_outputs=tf.keras.layers.Lambda(lambda x:tf.keras.backend.concatenate(x,axis=1))(all_outputs)
+        return decoder_outputs
