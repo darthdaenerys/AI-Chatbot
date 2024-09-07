@@ -30,3 +30,25 @@ class ChatBotTrainer(tf.keras.models.Model):
             all_outputs.append(decoder_outputs)
         decoder_outputs=tf.keras.layers.Lambda(lambda x:tf.keras.backend.concatenate(x,axis=1))(all_outputs)
         return decoder_outputs
+
+    def train_step(self,batch):
+        encoder_inputs,decoder_inputs,y=batch
+        loss=0
+        correct=0
+        total=0
+        with tf.GradientTape() as tape:
+            encoder_outputs,decoder_state_h,decoder_state_c=self.encoder(encoder_inputs,training=True)
+            for t in range(y.shape[1]):
+                decoder_output,decoder_state_h,decoder_state_c=self.decoder(decoder_inputs[:,t:t+1],encoder_outputs,decoder_state_h,decoder_state_c,training=True)
+                decoder_output=tf.squeeze(decoder_output,axis=1)
+                loss+=self.loss_fn(y[:,t],decoder_output)
+                correct_,total_=self.correct_fn(y[:,t],decoder_output)
+                correct+=correct_
+                total+=total_
+        batch_loss=loss/y.shape[1]
+        acc=correct/total
+        variables=self.encoder.trainable_variables+self.decoder.trainable_variables
+        grads=tape.gradient(loss,variables)
+        self.optimizer.apply_gradients(zip(grads,variables))
+        metrics={'loss':batch_loss,'accuracy':acc}
+        return metrics
