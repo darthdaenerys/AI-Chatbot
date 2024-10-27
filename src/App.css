@@ -58,3 +58,35 @@ nav i {
     margin: 2rem auto;
     height: 86vh;
 }
+
+.chats {
+    overflow-x: hidden;
+    border: .2rem solid black;
+    border-radius: 2rem;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    background-color: #A5DD9B;
+    height: 100%;
+    width: 100%;
+    margin: 0rem auto;
+    margin-bottom: .5rem;
+    padding: 1rem 0rem;
+    display: flex;
+    overflow-y: auto;
+    flex-direction: column;
+}
+.message-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: .3rem 0rem;
+}
+
+.message {
+    border-radius: 2.3rem;
+    font-size: 2rem;
+    max-width: 45rem;
+    display: inline-block;
+    padding: .8rem 1.5rem;
+    margin: .2rem 1rem;
+    opacity: 0;
+}
