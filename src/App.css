@@ -16,3 +16,33 @@ body {
     font-family: 'Ubuntu';
     background-color: #E2F4C5;
 }
+
+nav {
+    box-shadow: 0rem .2rem 1rem #00000075;
+    z-index: 2;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    background-color: #203b20;
+    align-items: center;
+    padding: .5rem 0rem;
+    position: sticky;
+    top: 0;
+}
+
+nav h2 {
+    font-size: 4rem;
+    color: white;
+    margin: 0rem auto;
+    text-align: center;
+}
+
+nav i {
+    display: inline-block;
+    font-size: 4rem;
+    align-content: center;
+    margin: 0rem 3rem;
+    color: white;
+    position: absolute;
+}
