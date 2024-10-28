@@ -101,3 +101,17 @@ nav i {
     border-top-left-radius: 0;
     align-self: flex-start;
 }
+.message.left{
+    animation: leftMotion 0.3s ease-out;
+    animation-fill-mode: forwards;
+    translate: -20rem 0rem;
+    opacity: 0;
+    transform: scale(0);
+}
+.message.right{
+    animation: rightMotion 0.3s ease-out;
+    animation-fill-mode: forwards;
+    translate: 20rem 0rem;
+    opacity: 0;
+    transform: scale(0);
+}
