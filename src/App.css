@@ -139,3 +139,16 @@ nav i {
         transform: scale(1);
     }
 }
+.type-message {
+    width: 100%;
+    flex-grow: 1;
+}
+#cursor {
+    display: inline-block;
+    background-color: #000;
+    animation: blink 1s infinite;
+    height: 2rem;
+    width: 1rem;
+    margin-bottom: -.3rem;
+    margin-left: .3rem;
+}
