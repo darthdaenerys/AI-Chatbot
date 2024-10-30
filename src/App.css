@@ -164,3 +164,8 @@ nav i {
         opacity: 1;
     }
 }
+
+#form {
+    display: flex;
+    flex-direction: row;
+}
