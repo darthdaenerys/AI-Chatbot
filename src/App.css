@@ -152,3 +152,15 @@ nav i {
     margin-bottom: -.3rem;
     margin-left: .3rem;
 }
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
