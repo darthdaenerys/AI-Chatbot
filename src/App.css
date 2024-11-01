@@ -169,3 +169,19 @@ nav i {
     display: flex;
     flex-direction: row;
 }
+
+input {
+    border-radius: 2rem;
+    border: .2rem solid black;
+    border-right: none;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 0;
+    font-size: 2rem;
+    padding: 1rem 1.5rem;
+    outline: none;
+    flex-grow: 1;
+    transition-duration: .3s;
+    transition-property: all;
+    transition-timing-function: ease-in-out;
+}
