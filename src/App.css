@@ -194,3 +194,23 @@ button {
     border-bottom-right-radius: 2rem;
     background-color: white;
 }
+
+@keyframes anim {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+button:hover i{
+    animation-name: anim;
+    animation-duration: .7s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
