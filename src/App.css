@@ -185,3 +185,12 @@ input {
     transition-property: all;
     transition-timing-function: ease-in-out;
 }
+
+button {
+    cursor: pointer;
+    padding: .8rem;
+    border: .2rem solid black;
+    border-left: none;
+    border-bottom-right-radius: 2rem;
+    background-color: white;
+}
