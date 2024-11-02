@@ -1,8 +1,6 @@
 # AI Chatbot
 
-gif here
-
-Dataset is available inside the repository
+![alt text](architecture/viewer.gif)
 
 ## Introduction
 
@@ -14,9 +12,11 @@ To build a chatbot using NLP/Deep Learning takes a lot of time to build a chatbo
 I tried to find the simple datasets for a chat bot (seq2seq). Then I decided to compose it myself. It is based on a website with simple dialogues for beginners.
 First column is questions, second is answers.
 
+Dataset is available inside the repository
+
 ## Model
 
-[alt text](architecture/encoder.png)
+![alt text](architecture/encoder.png)
 
 ![alt text](architecture/decoder.png)
 
@@ -40,5 +40,3 @@ If you want to run the application locally use following steps -
 ## Contributing
 
 If you would like to contribute to this project, you can fork the repository and submit a pull request with your changes. Please make sure to test your changes thoroughly before submitting the pull request.
-
-Thanks for visiting!
